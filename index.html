@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length Conversion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Length Conversion</h1>
+        <form>
+            <div class="form-group">
+                <label for="length-type">Select length type:</label>
+                <select class="form-control" id="length-type">
+                    <option value="Millimeter">Millimeter</option>
+                    <option value="Centimeter">Centimeter</option>
+                    <option value="Meter">Meter</option>
+                    <option value="Kilometer">Kilometer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="length-value">Enter length value:<span class="length-value-label"></span></label>
+                <input type="number" class="form-control" id="length-value">
+            </div>
+            <button type="button" class="btn btn-success" onclick="convertLength()">Convert</button>            
+            <button type="button" class="btn btn-danger" onclick="clearResults()">Clear</button>
+        </form>
+        <hr>
+        <h2>Results:</h2>
+        <div class="form-group">
+            <label for="resultMillimeters">Millimeters:</label>
+            <input type="number" class="form-control" id="resultMillimeters" readonly>
+        </div>
+        <div class="form-group">
+            <label for="resultCentimeters">Centimeters:</label>
+            <input type="number" class="form-control" id="resultCentimeters" readonly>
+        </div>
+        <div class="form-group">
+            <label for="resultMeters">Meters:</label>
+            <input type="number" class="form-control" id="resultMeters" readonly>
+        </div>
+        <div class="form-group">
+            <label for="resultKilometers">Kilometers:</label>
+            <input type="number" class="form-control" id="resultKilometers" readonly>
+        </div>
+    </div>
+    
+    <script>
+        function convertLength() {
+            // Get the selected length type
+            var lengthType = document.getElementById("length-type").value;
+    
+            // Get the entered length value
+            var lengthValue = parseFloat(document.getElementById("length-value").value);
+    
+            // Convert length based on the selected length type
+            var resultMillimeters, resultCentimeters, resultMeters, resultKilometers;
+    
+            switch (lengthType) {
+                case "Millimeter":
+                    resultMillimeters = lengthValue;
+                    resultCentimeters = lengthValue / 10;
+                    resultMeters = lengthValue / 1000;
+                    resultKilometers = lengthValue / 1000000;
+                    break;
+                case "Centimeter":
+                    resultMillimeters = lengthValue * 10;
+                    resultCentimeters = lengthValue;
+                    resultMeters = lengthValue / 100;
+                    resultKilometers = lengthValue / 100000;
+                    break;
+                case "Meter":
+                    resultMillimeters = lengthValue * 1000;
+                    resultCentimeters = lengthValue * 100;
+                    resultMeters = lengthValue;
+                    resultKilometers = lengthValue / 1000;
+                    break;
+                case "Kilometer":
+                    resultMillimeters = lengthValue * 1000000;
+                    resultCentimeters = lengthValue * 100000;
+                    resultMeters = lengthValue * 1000;
+                    resultKilometers = lengthValue;
+                    break;
+            }
+    
+            document.getElementById("resultMillimeters").value = resultMillimeters;
+            document.getElementById("resultCentimeters").value = resultCentimeters;
+            document.getElementById("resultMeters").value = resultMeters;
+            document.getElementById("resultKilometers").value = resultKilometers;
+        }
+    
+        function clearResults() {
+            document.getElementById("resultMillimeters").value = "";
+            document.getElementById("resultCentimeters").value = "";
+            document.getElementById("resultMeters").value = "";
+            document.getElementById("resultKilometers").value = "";
+        }
+    </script>
+
+</body>
+</html>
